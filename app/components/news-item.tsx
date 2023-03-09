@@ -1,13 +1,13 @@
 import { DotFilledIcon } from '@radix-ui/react-icons'
 import { Link } from '@remix-run/react'
 
-import type NewsItem from '~/types/news-item'
+import type News from '~/types/news'
 import DateBadge from './date-badge'
 import ScoreBadge from './score-badge'
 import UserBadge from './user-badge'
 
 interface NewsItemProps {
-	newsItem: NewsItem
+	newsItem: News
 }
 
 export default function NewsItem({ newsItem }: NewsItemProps) {

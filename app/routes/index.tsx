@@ -1,10 +1,8 @@
 import { defer } from '@remix-run/node'
 import { Await, useLoaderData, useRevalidator } from '@remix-run/react'
-import clsx from 'clsx'
 import { Suspense, useState } from 'react'
 import LastUpdate from '~/components/last-update'
 
-import NewsItem from '~/components/news-item'
 import NewsList from '~/components/news-list'
 import NewsListSkeleton from '~/components/skeleton/news-list'
 import UpdateButton from '~/components/update-button'

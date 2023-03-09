@@ -16,7 +16,7 @@ import UpdateButton from '~/components/update-button'
 import UserBadge from '~/components/user-badge'
 import getItem from '~/models/item'
 import type Comment from '~/types/comment'
-import type NewsItem from '~/types/news-item'
+import type News from '~/types/news'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => ({
 	charset: 'utf-8',
@@ -29,7 +29,7 @@ export async function loader({ params }: LoaderArgs) {
 
 	invariant(id, 'id is required')
 
-	const newsItem = await getItem<NewsItem>(id)
+	const newsItem = await getItem<News>(id)
 	const comments: Comment[] = await Promise.all(
 		newsItem.kids?.map(getItem) ?? []
 	)
