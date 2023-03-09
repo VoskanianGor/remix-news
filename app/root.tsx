@@ -27,7 +27,7 @@ export default function App() {
 				<Links />
 			</head>
 			<body>
-				<main className="max-w-[80ch] w-full mx-auto mt-4 px-5">
+				<main className="w-fit mx-auto mt-4 px-5">
 					<Outlet />
 				</main>
 				<ScrollRestoration />

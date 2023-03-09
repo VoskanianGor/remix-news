@@ -2,7 +2,7 @@ import { DotFilledIcon } from '@radix-ui/react-icons'
 
 export default function NewsListSkeleton() {
 	return (
-		<div className="mt-5 space-y-3 animate-pulse">
+		<div className="w-[570px] mx-auto mt-5 space-y-3 animate-pulse">
 			{[...Array(20)].map((_, i) => (
 				<li key={i} className="flex flex-col gap-2">
 					<div className="w-[60ch] h-4 bg-gray-200 rounded-md dark:bg-gray-700" />
