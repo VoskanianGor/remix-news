@@ -1,8 +1,7 @@
-import type { SerializeFrom } from '@remix-run/node'
+import { DotFilledIcon } from '@radix-ui/react-icons'
 import clsx from 'clsx'
 import { useAsyncValue } from 'react-router-dom'
 import type { loader } from '~/routes'
-import type News from '~/types/news'
 import NewsItem from './news-item'
 
 interface NewsListProps {
@@ -10,7 +9,9 @@ interface NewsListProps {
 }
 
 export default function NewsList({ isLoading }: NewsListProps) {
-	const news = useAsyncValue() as News[]
+	const news = useAsyncValue() as Awaited<
+		ReturnType<typeof loader>['data']['news']
+	>
 
 	return (
 		<ul

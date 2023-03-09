@@ -6,7 +6,7 @@ interface DateBadgeProps {
 
 export default function DateBadge({ time }: DateBadgeProps) {
 	return (
-		<span className="text-sm text-slate-600 font-bold uppercase">
+		<span className="text-sm text-slate-600 uppercase">
 			{format(new Date(time * 1000), 'mediumDate')}
 		</span>
 	)

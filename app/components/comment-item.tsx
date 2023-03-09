@@ -34,7 +34,7 @@ export default function CommentItem({ comment }: CommentItemProps) {
 		setIsLoading(false)
 	}
 
-	if (!comment.by) {
+	if (!comment.by || comment.dead) {
 		return null
 	}
 

@@ -16,7 +16,7 @@ import UpdateButton from '~/components/update-button'
 import UserBadge from '~/components/user-badge'
 import getItem from '~/models/item'
 import type Comment from '~/types/comment'
-import type News from '~/types/news'
+import type NewsItem from '~/types/news-item'
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => ({
 	charset: 'utf-8',
@@ -29,7 +29,7 @@ export async function loader({ params }: LoaderArgs) {
 
 	invariant(id, 'id is required')
 
-	const newsItem = await getItem<News>(id)
+	const newsItem = await getItem<NewsItem>(id)
 	const comments: Comment[] = await Promise.all(
 		newsItem.kids?.map(getItem) ?? []
 	)
@@ -39,11 +39,12 @@ export async function loader({ params }: LoaderArgs) {
 
 export default function NewsPage() {
 	const { newsItem, comments } = useLoaderData<typeof loader>()
+
 	const revalidator = useRevalidator()
 	const isLoading = revalidator.state === 'loading'
 
 	return (
-		<article className="prose prose-a:w-fit prose-orange mx-auto">
+		<article className="prose prose-orange mx-auto">
 			<Link
 				to="/"
 				className="flex items-center gap-1 uppercase text-lg no-underline mb-2 hover:text-orange-700 hover:gap-2 transition-all"

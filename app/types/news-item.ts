@@ -1,6 +1,6 @@
 import type Item from './item'
 
-export default interface News extends Item {
+export default interface NewsItem extends Item {
 	title?: string
 	url?: string
 	score?: number

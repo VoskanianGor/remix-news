@@ -1,4 +1,4 @@
-import type News from '~/types/news'
+import type NewsItem from '~/types/news-item'
 import getItem from './item'
 
 async function getLatestNewsIds(limit?: number) {
@@ -11,7 +11,9 @@ async function getLatestNewsIds(limit?: number) {
 	return news.slice(0, limit ?? -1)
 }
 
-export default async function getLatestNews(limit?: number): Promise<News[]> {
+export default async function getLatestNews(
+	limit?: number
+): Promise<NewsItem[]> {
 	const newsIds = await getLatestNewsIds(limit)
 
 	const newsPromises = newsIds.map(getItem)

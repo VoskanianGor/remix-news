@@ -47,6 +47,8 @@ export default function Index() {
 				/>
 			</div>
 
+			<hr />
+
 			<Suspense fallback={<NewsListSkeleton />}>
 				<Await resolve={news}>
 					<NewsList isLoading={isLoading} />
