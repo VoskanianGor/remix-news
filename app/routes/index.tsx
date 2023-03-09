@@ -1,4 +1,4 @@
-import { defer, json } from '@remix-run/node'
+import { defer } from '@remix-run/node'
 import { Await, useLoaderData, useRevalidator } from '@remix-run/react'
 import clsx from 'clsx'
 import { Suspense } from 'react'
@@ -6,12 +6,12 @@ import { Suspense } from 'react'
 import NewsItem from '~/components/news-item'
 import NewsListSkeleton from '~/components/skeleton/news-list'
 import UpdateButton from '~/components/update-button'
+import useInterval from '~/hooks/use-interval'
 import getLatestNews from '~/models/news.server'
 
 export function loader() {
 	const news = getLatestNews(100)
 
-	// return json({ news })
 	return defer({
 		news,
 	})
@@ -22,6 +22,8 @@ export default function Index() {
 
 	const revalidator = useRevalidator()
 	const isLoading = revalidator.state === 'loading'
+
+	useInterval(revalidator.revalidate, 1000 * 60)
 
 	return (
 		<div className="prose prose-orange max-w-none">

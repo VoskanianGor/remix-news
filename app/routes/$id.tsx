@@ -2,13 +2,11 @@ import {
 	ArrowLeftIcon,
 	CalendarIcon,
 	ExternalLinkIcon,
-	PersonIcon,
 } from '@radix-ui/react-icons'
-import type { LoaderArgs } from '@remix-run/node'
+import type { LoaderArgs, MetaFunction } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Link, useLoaderData, useRevalidator } from '@remix-run/react'
 import clsx from 'clsx'
-import { format } from 'fecha'
 import Balancer from 'react-wrap-balancer'
 import invariant from 'tiny-invariant'
 
@@ -19,6 +17,12 @@ import UserBadge from '~/components/user-badge'
 import getItem from '~/models/item'
 import type Comment from '~/types/comment'
 import type News from '~/types/news'
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => ({
+	charset: 'utf-8',
+	title: `RN | ${data.newsItem.title}`,
+	viewport: 'width=device-width,initial-scale=1',
+})
 
 export async function loader({ params }: LoaderArgs) {
 	const { id } = params
@@ -92,7 +96,14 @@ export default function NewsPage() {
 					isLoading && 'pt-3 opacity-40'
 				)}
 			>
-				<CommentList comments={comments} />
+				{comments.length ? (
+					<CommentList comments={comments} />
+				) : (
+					<div className="flex flex-col text-center text-sm mt-5">
+						<span className="text-xl">👀</span>
+						There is no comments yet
+					</div>
+				)}
 			</div>
 		</article>
 	)
