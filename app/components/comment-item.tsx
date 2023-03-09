@@ -39,7 +39,7 @@ export default function CommentItem({ comment }: CommentItemProps) {
 	}
 
 	return (
-		<li ref={animateParent} className="w-full">
+		<li ref={animateParent} className="w-full mb-6">
 			<div className="flex items-center">
 				<UserBadge username={comment.by} />
 				<DotIcon className="mx-1" />

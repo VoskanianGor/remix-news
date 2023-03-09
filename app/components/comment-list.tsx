@@ -7,7 +7,7 @@ interface CommentsListProps {
 
 export default function CommentList({ comments }: CommentsListProps) {
 	return (
-		<ul className="list-none border-l">
+		<ul className="list-none border-l border-b">
 			{comments.map(comment => (
 				<CommentItem key={comment.id} comment={comment} />
 			))}
