@@ -30,9 +30,7 @@ export async function loader({ params }: LoaderArgs) {
 	invariant(id, 'id is required')
 
 	const newsItem = await getItem<News>(id)
-	const comments: Comment[] = await Promise.all(
-		newsItem.kids?.map(getItem) ?? []
-	)
+	const comments = await Promise.all(newsItem.kids?.map(getItem<Comment>) ?? [])
 
 	return json({ newsItem, comments })
 }

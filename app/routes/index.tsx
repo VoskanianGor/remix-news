@@ -7,7 +7,7 @@ import NewsList from '~/components/news-list'
 import NewsListSkeleton from '~/components/skeleton/news-list'
 import UpdateButton from '~/components/update-button'
 import useInterval from '~/hooks/use-interval'
-import getLatestNews from '~/models/news.server'
+import getLatestNews from '~/models/news'
 
 export function loader() {
 	const news = getLatestNews(100)

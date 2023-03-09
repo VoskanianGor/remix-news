@@ -27,9 +27,11 @@ export default function CommentItem({ comment }: CommentItemProps) {
 
 		setIsLoading(true)
 
-		const response = await Promise.all(comment.kids?.map(getItem) ?? [])
+		const commentReplies = await Promise.all(
+			comment.kids?.map(getItem<Comment>) ?? []
+		)
 
-		setReplies(response)
+		setReplies(commentReplies)
 		setShowReplies(!showReplies)
 		setIsLoading(false)
 	}

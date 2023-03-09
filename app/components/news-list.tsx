@@ -1,4 +1,3 @@
-import { DotFilledIcon } from '@radix-ui/react-icons'
 import clsx from 'clsx'
 import { useAsyncValue } from 'react-router-dom'
 import type { loader } from '~/routes'
