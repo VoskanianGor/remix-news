@@ -4,6 +4,7 @@ import { Suspense, useState } from 'react'
 import LastUpdate from '~/components/last-update'
 
 import NewsList from '~/components/news-list'
+import NewsListErrorBoundary from '~/components/news-list-error-boundary'
 import NewsListSkeleton from '~/components/skeleton/news-list'
 import UpdateButton from '~/components/update-button'
 import useInterval from '~/hooks/use-interval'
@@ -48,28 +49,7 @@ export default function Index() {
 			<hr />
 
 			<Suspense fallback={<NewsListSkeleton />}>
-				<Await
-					resolve={news}
-					errorElement={
-						<div>
-							<h4 className="text-center">
-								<span>💥</span>
-								<br />
-								<span className="text-red-500">
-									Something went wrong, please try again
-								</span>
-							</h4>
-
-							<div className="flex items-center justify-center">
-								<UpdateButton
-									handler={handleUpdate}
-									isLoading={isLoading}
-									title="update news"
-								/>
-							</div>
-						</div>
-					}
-				>
+				<Await resolve={news} errorElement={<NewsListErrorBoundary />}>
 					<NewsList isLoading={isLoading} />
 				</Await>
 			</Suspense>
