@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import useInterval from '~/hooks/use-interval'
 import getTimeAgo from '~/utils/get-time-ago'
 
@@ -7,10 +8,10 @@ interface LastUpdateProps {
 }
 
 export default function LastUpdate({ lastUpdate }: LastUpdateProps) {
-	const [lastUpdateTime, setLastUpdateTime] = useState(Date.now())
+	const [_, rerenderer] = useState(Date.now())
 
 	useInterval(() => {
-		setLastUpdateTime(Date.now())
+		rerenderer(Date.now())
 	}, 1000)
 
 	return (

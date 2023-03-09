@@ -5,6 +5,7 @@ import { Suspense, useState } from 'react'
 import LastUpdate from '~/components/last-update'
 
 import NewsItem from '~/components/news-item'
+import NewsList from '~/components/news-list'
 import NewsListSkeleton from '~/components/skeleton/news-list'
 import UpdateButton from '~/components/update-button'
 import useInterval from '~/hooks/use-interval'
@@ -48,18 +49,7 @@ export default function Index() {
 
 			<Suspense fallback={<NewsListSkeleton />}>
 				<Await resolve={news}>
-					{resolvedNews => (
-						<ul
-							className={clsx(
-								'w-fit mx-auto p-0 flex flex-col gap-4 list-none transition-all duration-300',
-								isLoading && 'pt-3 opacity-40'
-							)}
-						>
-							{resolvedNews?.map(item => (
-								<NewsItem key={item.id} newsItem={item} />
-							))}
-						</ul>
-					)}
+					<NewsList isLoading={isLoading} />
 				</Await>
 			</Suspense>
 		</div>
